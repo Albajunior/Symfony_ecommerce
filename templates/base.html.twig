@@ -2,18 +2,35 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        <title>{% block title %}Symfony{% endblock %}-Welcome!</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 
+        viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">      
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+       
+        {# Feuilles de style css..#}
+       
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        {% block stylesheets %} {% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link href="{{  asset('icons/favicon.ico') }}">
+        {# Quand on met le style ou le bootstrap dans le block stylesheet sa marche aussi, 
+        mais faudra utiiliser la fonction parent de twig pour utiliser le style dans d'autre page#}
+       
     </head>
+
     <body>
+
+        {# Fichiers js #}
+        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer ></script> 
+        {% block javascripts %}
+        {% endblock %}
+        <script src="{{ asset('assets/js/script.js') }}" defer ></script>
+
+        {% include "includes/header.html.twig" %}
         {% block body %}{% endblock %}
+        {% include "includes/footer.html.twig" %}
+        
     </body>
 </html>
