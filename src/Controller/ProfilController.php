@@ -6,11 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * @Route("/profil", name="profile_")
+ */
 class ProfilController extends AbstractController
 {
     /**
-     * @Route("/profil", name="index")
+     * @Route("/", name="index_profil")
      */
     public function index(): Response
     {

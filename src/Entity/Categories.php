@@ -24,6 +24,11 @@ class Categories
     private $id;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $orderCategory;
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $name;
@@ -38,10 +43,15 @@ class Categories
      */
     private $categories;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Products::class, mappedBy="categories")
+     */
+    private $products;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-   
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -49,6 +59,18 @@ class Categories
         return $this->id;
     }
 
+    public function getOrderCategory(): ?int
+    {
+        return $this->orderCategory;
+    }
+
+    public function setOrderCategory(int $orderCategory): self
+    {
+        $this->orderCategory = $orderCategory;
+
+        return $this;
+    }
+    
     public function getName(): ?string
     {
         return $this->name;
@@ -102,4 +124,13 @@ class Categories
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Products>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+   
 }
